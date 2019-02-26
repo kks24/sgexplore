@@ -11,11 +11,17 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="SGXplore.css">
     </head>
-   
+
     <body>
+        <?php
+        include 'header.php';
+        ?>
+        <div id="slider">
+            My slider here
+        </div>
+
         <?php 
-            include 'header.php';
-            echo 'idk what im suppose to put here lmao.';
+            include 'STBWidget.php';
         ?>
     </body>
 </html>
