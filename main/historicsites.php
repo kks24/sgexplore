@@ -83,7 +83,6 @@ $app->get('/:id', function($id) use ($app) {
                 <div class="col-12">
                     <div class="breadcumb-content">
                         <div class="map-ratings-review-area d-flex">
-                            <a href="#" class="d-flex align-items-center justify-content-center"><img src="../img/core-img/map.png" alt=""></a>
                             <a href="../historicsites.php">Historic Sites</a>
                         </div>
                     </div>
