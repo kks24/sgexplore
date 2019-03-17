@@ -1208,7 +1208,7 @@ li {
     margin-bottom: 0;
 }
 
-.author-widget > img {
+.author-widget > canvas {
     width: 43px !important;
     height: 43px !important;
     border-radius: 50%;

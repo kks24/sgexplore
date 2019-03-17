@@ -1,0 +1,18 @@
+create view search_table as
+select id,kml_name,NAME from hawker_centres
+union
+select id,kml_name,NAME from historic_sites
+ union
+select id,kml_name,NAME from monuments
+
+
+CREATE TABLE full_table AS
+   (SELECT * FROM ((SELECT id,category,NAME,PHOTOURL,ADDRESSSTREETNAME from hawker_centres)
+union
+(select id,category,NAME,PHOTOURL,ADDRESSSTREETNAME from historic_sites)
+ union
+(select id,category,NAME,PHOTOURL,ADDRESSSTREETNAME from monuments)
+union
+(select id,category,NAME,PHOTOURL,ADDRESSSTREETNAME from museums)
+union
+(select id,category,NAME,PHOTOURL,ADDRESSSTREETNAME from tourism_place)) AS full_table)
