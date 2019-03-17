@@ -3,7 +3,6 @@ $title = "Home - SGexplore";
 include "header.php";
 ?>
 
-
     <!-- ***** Welcome Area Start ***** -->
     <section class="dorne-welcome-area bg-img bg-overlay" style="background-image: url(img/bg-img/mbs.jpg);">
         <div class="container h-100">

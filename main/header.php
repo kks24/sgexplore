@@ -35,8 +35,8 @@
                     <div class="search-close-btn" id="closeBtn">
                         <i class="pe-7s-close-circle" aria-hidden="true"></i>
                     </div>
-                    <form action="#" method="get">
-                        <input type="search" name="caviarSearch" id="search" placeholder="Search Your Desire Attractions">
+                    <form action="https://sgexplore.tk/main/search.php" method="POST">
+                        <input type="search" name="search" id="search" placeholder="Search Your Desire Attractions">
                         <input type="submit" class="d-none" value="submit">
                     </form>
                 </div>
@@ -82,7 +82,7 @@
                             </div>
                             <!-- Add listings btn -->
                             <div class="dorne-add-listings-btn">
-                                <a href="#" class="btn dorne-btn">Plan Itinerary</a>
+                                <a href="https://sgexplore.tk/main/planner.php" class="btn dorne-btn">Plan Itinerary</a>
                             </div>
                         </div>
                     </nav>
@@ -91,6 +91,3 @@
         </div>
     </header>
     <!-- ***** Header Area End ***** -->
-
-	
-	

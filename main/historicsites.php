@@ -3,6 +3,8 @@ $title = "Historic Sites - SGexplore";
 include "header.php";
 ?>
 
+
+
 <?php
 require './libs/Slim/Slim.php';
 require 'Models/historicsites.php';
@@ -67,6 +69,7 @@ $app->get('/', function() use ($app) {
 
 
 $app->get('/:id', function($id) use ($app) {
+    
 	$historicsites = new historicsites();
     $result = $historicsites->singlefetch($id);
     if ($result != NULL) {
@@ -77,6 +80,29 @@ $app->get('/:id', function($id) use ($app) {
         }
         else{
             while ($row= $result->fetch_assoc()) {
+                $cookie_name = "planner";
+if(isset($_POST["add_to_planner"]))
+{
+    if(isset($_COOKIE[$cookie_name])) {
+        $cookie_data = stripslashes($_COOKIE[$cookie_name]);
+        $itinerary_data = json_encode($cookie_data, true);
+    } 
+    else
+    {
+        $planner_data = array();
+    }
+
+    $planner_array = array(
+        'name' => $_POST["hidden_name"],
+        'address' => $_POST["hidden_address"],
+        'date' => $_POST["date"],
+        'time' => $_POST["time"]
+    );
+
+    $planner_data[] = $planner_array;
+    $itinerary_data = json_encode($planner_data);
+    setcookie($cookie_name, $itinerary_data, time() + (86400 * 30));
+}
 	echo '<div class="breadcumb-area height-600 bg-img bg-overlay" style="background-image: url('.$row["PHOTOURL"].')">
 	<div class="container">
             <div class="row">
@@ -129,22 +155,27 @@ $app->get('/:id', function($id) use ($app) {
                         echo'<!-- Book A Table Widget -->
                         <div class="book-a-table-widget mt-50">
                             <h6>Add To Itinerary</h6>
-                            <form action="#" method="get">
-                                <select class="custom-select" id="Which day do you plan to go?">
-                                <option selected>Which day do you plan to go?</option>
-                                <option value="1">New York</option>
-                                <option value="2">Latvia</option>
-                                <option value="3">Dhaka</option>
-                                <option value="4">Melbourne</option>
-                                <option value="5">London</option>
-                            </select>
-                                <select class="custom-select" id="What time?">
-                                <option selected>8:00 AM</option>
-                                <option value="1">9:00 AM</option>
-                                <option value="3">10:00 AM</option>
-                                <option value="3">11:00 AM</option>
-                            </select>
-                                <button type="submit" class="btn dorne-btn bg-white text-dark"><i class="fa fa-check pr-2" aria-hidden="true"></i> Add To Itinerary</button>
+                            <form method="post" action="../planner.php">
+                            
+                                <input type="hidden" name="hidden_name" value='.$row["NAME"].'/>
+                                
+                                <input type="hidden" name="hidden_address" value='.$row["ADDRESSSTREETNAME"].'/>
+                                
+                                <select class="custom-select" id="date" name="date">
+                                    <option selected value="30th March">30th March</option>
+                                    <option value="1st March">1 March</option>
+                                    <option value="2nd March">2 March</option>
+                                    <option value="3rd March">3 March</option>
+                                    <option value="4th March">4 March</option>
+                                    <option value="5th March">5 March</option>
+                                </select>
+                                <select class="custom-select" id="time" name="time">
+                                    <option selected value="8:00AM">8:00 AM</option>
+                                    <option value="9:00 AM">9:00 AM</option>
+                                    <option value="10:00 AM">10:00 AM</option>
+                                    <option value="11:00 AM">11:00 AM</option>
+                                </select>
+                                <button type="submit" value="submit" class="btn dorne-btn bg-white text-dark" name="add_to_planner"><i class="fa fa-check pr-2" aria-hidden="true"></i> Add To Itinerary</button>
                             </form>
                         </div>
 
@@ -214,11 +245,36 @@ $app->get('/:id', function($id) use ($app) {
     }
 });
 
-
-
 $app->run();
 
 ?>
+
+<div class="book-a-table-widget mt-50">
+                            <h6>Add To Itinerary</h6>
+                            <form method="post" action="planner.php">
+                            
+                                <input type="hidden" name="hidden_name" value="Test"/>
+                                
+                                <input type="hidden" name="hidden_address" value="test"/>
+                                
+                                <select class="custom-select" id="date" name="date">
+                                    <option selected value="30th March">30th March</option>
+                                    <option value="1st March">1 March</option>
+                                    <option value="2nd March">2 March</option>
+                                    <option value="3rd March">3 March</option>
+                                    <option value="4th March">4 March</option>
+                                    <option value="5th March">5 March</option>
+                                </select>
+                                <select class="custom-select" id="time" name="time">
+                                    <option selected value="8:00AM">8:00 AM</option>
+                                    <option value="9:00 AM">9:00 AM</option>
+                                    <option value="10:00 AM">10:00 AM</option>
+                                    <option value="11:00 AM">11:00 AM</option>
+                                </select>
+                                <button type="submit" value="submit" class="btn dorne-btn bg-white text-dark" name="add_to_planner"><i class="fa fa-check pr-2" aria-hidden="true"></i> Add To Itinerary</button>
+                            </form>
+                        </div>
+
 
             </div>
         </div>
