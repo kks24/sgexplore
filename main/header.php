@@ -1,5 +1,11 @@
 <html lang="en">
+<script>
 
+window.onload = () => {
+    let el = document.querySelector('[alt="www.000webhost.com"]').parentNode.parentNode;
+    el.parentNode.removeChild(el);
+}
+</script>
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -19,6 +25,9 @@
     <!-- Responsive CSS -->
     <link href="https://sgexplore.tk/main/css/responsive/responsive.css" rel="stylesheet">
 
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5c925ea887fdcde4"></script>
+        
 </head>
 
 <body>
@@ -68,9 +77,9 @@
                                         <a class="dropdown-item" href="https://sgexplore.tk/main/museums.php">Museums</a>
                                     </div>
                                 </li>
-                                <li class="nav-item">
+                                <!--<li class="nav-item">
                                     <a class="nav-link" href="https://sgexplore.tk/main/contact.php">Contact</a>
-                                </li>
+                                </li> -->
                             </ul>
                             <!-- Search btn -->
                             <div class="dorne-search-btn">

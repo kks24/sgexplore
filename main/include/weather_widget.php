@@ -1,8 +1,4 @@
 <?php
-date_default_timezone_set('Asia/Singapore');
-
-$date = date("Y-m-d").'T'.date("H:i:s").'Z';
-//echo $date;
 
 $weather_data = json_decode(file_get_contents('https://api.darksky.net/forecast/c481a49cd57eff4734843354139fa7b2/'.$lat.','.$lng.','.$date.'?exclude=hourly,daily,flags'), true);
 //print_r($weather_data);
@@ -28,7 +24,7 @@ foreach($weather_data['currently'] as $key => $value) {
 <div class="author-widget mt-50 d-flex align-items-center">
 	 <canvas id="weathericon" width="50" height="50"></canvas>
         <div class="authors-name">
-           <h6>Weather Today<br />
+           <h6>Weather For <?php echo $day; ?><br />
 		     <?php echo $currentsum; ?><br />
              <h6><?php echo $currenttemp; ?>&deg;C</h6>
         </div>
